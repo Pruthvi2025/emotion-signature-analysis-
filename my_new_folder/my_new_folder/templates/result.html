@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result - Signature Emotion Analysis</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #050101c3;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        /* Heading Animation */
+        h1 {
+            font-size: 3em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: #fff;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Result Container */
+        .result-container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px 50px;
+            border-radius: 12px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+            animation: zoomIn 1s ease-in-out;
+        }
+
+        /* Image Styling */
+        img {
+    max-width: 501px;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 27px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    animation: scaleIn 1s ease-in-out;
+}
+
+        /* Emotion Section */
+        .emotion {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+
+        .emoji {
+            font-size: 32px;
+        }
+
+        /* Description Styling */
+        .description {
+            font-size: 18px;
+            color: #333;
+            margin-top: 20px;
+            animation: fadeInUp 2s ease-out;
+        }
+
+        /* Buttons */
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .buttons a {
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        .buttons a:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+        .buttons a:active {
+            background-color: #003f7f;
+            transform: translateY(2px);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            0% {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h1>Signature Emotion Analysis Result</h1>
+
+        <!-- Display the uploaded image with animation -->
+        <img src="{{ file_url }}" alt="Uploaded Signature">
+
+        <!-- Emotion Prediction -->
+        <div class="emotion">
+            Predicted Emotion: {{ predicted_emotion }}
+            <span class="emoji">
+                {% if predicted_emotion == "Happy" %} 😊
+                {% elif predicted_emotion == "Sad" %} 😢
+                {% elif predicted_emotion == "Angry" %} 😡
+                {% elif predicted_emotion == "Normal" %} 😐
+                {% endif %}
+            </span>
+        </div>
+
+        <!-- Description of Emotion -->
+        <div class="description">{{ description }}</div>
+
+        <!-- Buttons to Upload Another or Go Home -->
+        <div class="buttons">
+            <a href="/">Upload Another Signature</a>
+            <a href="/#about">About</a>
+        </div>
+    </div>
+</body>
+</html>
